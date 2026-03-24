@@ -11,8 +11,11 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginPage {
   private readonly fb = inject(FormBuilder);
+  private readonly availableCardImages = ['/Bakugo.png', '/Hinata.png', '/Levi.png', '/Momo.png'];
+  private readonly backgroundCardCount = 10;
 
   protected readonly submitAttempted = signal(false);
+  protected readonly backgroundCardImages = this.createBackgroundImages();
 
   protected readonly loginForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
@@ -32,5 +35,17 @@ export class LoginPage {
 
     // Placeholder while backend auth is not connected yet.
     console.log('Login payload', this.loginForm.getRawValue());
+  }
+
+  private createBackgroundImages(): string[] {
+    const source = this.availableCardImages.length > 0 ? this.availableCardImages : ['/Hinata.png'];
+    const images: string[] = [];
+
+    for (let index = 0; index < this.backgroundCardCount; index += 1) {
+      const image = source[Math.floor(Math.random() * source.length)];
+      images.push(image);
+    }
+
+    return images;
   }
 }

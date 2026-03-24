@@ -7,13 +7,140 @@
   min-height: 100dvh;
   display: grid;
   place-items: center;
+  position: relative;
+  overflow: hidden;
   padding: 1rem;
   background:
-    radial-gradient(circle at 20% 15%, #1f3a63 0%, #0f1c32 36%, #070b16 70%, #04070f 100%),
-    linear-gradient(140deg, #0a1020 0%, #050810 100%);
+    radial-gradient(circle at 15% 10%, #253f69 0%, #101a30 26%, #070b16 60%, #04070f 100%),
+    linear-gradient(145deg, #090d1d 0%, #050810 100%);
+}
+
+.bg-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-card {
+  position: absolute;
+  width: clamp(6.5rem, 13vw, 10rem);
+  aspect-ratio: 2 / 3;
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 16%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.52;
+  filter: blur(2.4px) saturate(1.04);
+  transform: var(--card-base-transform, rotate(0deg));
+  animation: driftCard 9s ease-in-out infinite;
+}
+
+.bg-card-1 {
+  top: 2%;
+  left: 4.5%;
+  width: clamp(6rem, 12vw, 9rem);
+  opacity: 0.46;
+  --card-base-transform: rotate(-21deg) scale(0.88);
+}
+
+.bg-card-2 {
+  top: 8.5%;
+  right: 2.2%;
+  width: clamp(6.9rem, 13.5vw, 10.3rem);
+  opacity: 0.56;
+  --card-base-transform: rotate(13deg) scale(0.97);
+  animation-delay: 1.2s;
+}
+
+.bg-card-3 {
+  top: 24%;
+  left: 7%;
+  width: clamp(6.3rem, 12.4vw, 9.7rem);
+  opacity: 0.5;
+  --card-base-transform: rotate(-10deg) scale(0.94);
+  animation-delay: 0.7s;
+}
+
+.bg-card-4 {
+  top: 36%;
+  right: 5%;
+  width: clamp(6rem, 12vw, 9.3rem);
+  opacity: 0.44;
+  --card-base-transform: rotate(19deg) scale(0.86);
+  animation-delay: 1.7s;
+}
+
+.bg-card-5 {
+  top: 11.5%;
+  left: 26.5%;
+  width: clamp(7.2rem, 14vw, 10.5rem);
+  opacity: 0.59;
+  --card-base-transform: rotate(-6deg) scale(1);
+  animation-delay: 0.35s;
+}
+
+.bg-card-6 {
+  top: 18%;
+  right: 24%;
+  width: clamp(5.9rem, 11.5vw, 9.1rem);
+  opacity: 0.42;
+  --card-base-transform: rotate(8deg) scale(0.84);
+  animation-delay: 1.45s;
+}
+
+.bg-card-7 {
+  bottom: 24%;
+  left: 19%;
+  width: clamp(6.7rem, 13vw, 10rem);
+  opacity: 0.57;
+  --card-base-transform: rotate(-13deg) scale(0.95);
+  animation-delay: 2.05s;
+}
+
+.bg-card-8 {
+  bottom: 16%;
+  right: 9%;
+  width: clamp(6.3rem, 12.2vw, 9.5rem);
+  opacity: 0.49;
+  --card-base-transform: rotate(11deg) scale(0.9);
+  animation-delay: 0.95s;
+}
+
+.bg-card-9 {
+  bottom: 7%;
+  left: 37.5%;
+  width: clamp(5.7rem, 11.2vw, 8.8rem);
+  opacity: 0.41;
+  --card-base-transform: rotate(-15deg) scale(0.8);
+  animation-delay: 1.9s;
+}
+
+.bg-card-10 {
+  bottom: 11%;
+  right: 35.5%;
+  width: clamp(7.1rem, 13.8vw, 10.6rem);
+  opacity: 0.6;
+  --card-base-transform: rotate(6deg) scale(1.03);
+  animation-delay: 0.55s;
+}
+
+@keyframes driftCard {
+  0% {
+    transform: var(--card-base-transform, rotate(0deg)) translateY(0);
+  }
+  50% {
+    transform: var(--card-base-transform, rotate(0deg)) translateY(-8px);
+  }
+  100% {
+    transform: var(--card-base-transform, rotate(0deg)) translateY(0);
+  }
 }
 
 .login-card {
+  position: relative;
+  z-index: 1;
   width: min(100%, 28rem);
   padding: 1.4rem;
   border-radius: 1rem;
@@ -117,4 +244,22 @@
 
 .back-link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .bg-card {
+    width: 5.4rem;
+    filter: blur(3px);
+    opacity: 0.42;
+  }
+
+  .bg-card-4,
+  .bg-card-5,
+  .bg-card-6,
+  .bg-card-7,
+  .bg-card-8,
+  .bg-card-9,
+  .bg-card-10 {
+    display: none;
+  }
 }
