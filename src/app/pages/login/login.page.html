@@ -1,0 +1,36 @@
+<section class="login-shell" aria-label="Pantalla de inicio de sesión">
+  <div class="login-card">
+    <h1 class="title">Inicia sesión</h1>
+    <p class="subtitle">Accede a tu colección y continúa donde lo dejaste.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="form" novalidate>
+      <label class="field-label" for="email">Correo electrónico</label>
+      <input id="email" type="email" formControlName="email" class="field" autocomplete="email" />
+      @if (showErrors() && loginForm.controls.email.invalid) {
+        <p class="error">Introduce un correo válido.</p>
+      }
+
+      <label class="field-label" for="password">Contraseña</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="field"
+        autocomplete="current-password"
+      />
+      @if (showErrors() && loginForm.controls.password.invalid) {
+        <p class="error">La contraseña debe tener al menos 6 caracteres.</p>
+      }
+
+      <label class="remember-row">
+        <input type="checkbox" formControlName="remember" />
+        Recordarme
+      </label>
+
+      <button type="submit" class="submit-btn">Iniciar sesión</button>
+      <a routerLink="/register" class="create-account-btn">Crear cuenta</a>
+    </form>
+
+    <a routerLink="/" class="back-link">Volver al inicio</a>
+  </div>
+</section>
