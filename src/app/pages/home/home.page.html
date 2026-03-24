@@ -1,0 +1,49 @@
+<section class="home-shell" aria-label="Portada principal de coleccion digital">
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <div class="bg-field" aria-hidden="true">
+    <div class="bg-card bg-card-1 card-ornament" [style.background-image]="'url(' + backgroundCardImages[0] + ')'" ></div>
+    <div class="bg-card bg-card-2 card-ornament" [style.background-image]="'url(' + backgroundCardImages[1] + ')'" ></div>
+    <div class="bg-card bg-card-3 card-ornament" [style.background-image]="'url(' + backgroundCardImages[2] + ')'" ></div>
+    <div class="bg-card bg-card-4 card-ornament" [style.background-image]="'url(' + backgroundCardImages[3] + ')'" ></div>
+    <div class="bg-card bg-card-5 card-ornament" [style.background-image]="'url(' + backgroundCardImages[4] + ')'" ></div>
+    <div class="bg-card bg-card-6 card-ornament" [style.background-image]="'url(' + backgroundCardImages[5] + ')'" ></div>
+    <div class="bg-card bg-card-7 card-ornament" [style.background-image]="'url(' + backgroundCardImages[6] + ')'" ></div>
+    <div class="bg-card bg-card-8 card-ornament" [style.background-image]="'url(' + backgroundCardImages[7] + ')'" ></div>
+    <div class="bg-card bg-card-9 card-ornament" [style.background-image]="'url(' + backgroundCardImages[8] + ')'" ></div>
+    <div class="bg-card bg-card-10 card-ornament" [style.background-image]="'url(' + backgroundCardImages[9] + ')'" ></div>
+  </div>
+
+  <header class="hero-copy">
+    <p class="eyebrow">Tu colección digital de cartas empieza aquí</p>
+    <h1 class="hero-title">Colecciona, Intercambia y Presume tus cartas</h1>
+  </header>
+
+  <div class="cards-stage" aria-hidden="true">
+    <article class="main-card main-card-left card-ornament" [style.background-image]="'url(' + leftMainImage + ')'" aria-label="Carta destacada izquierda"></article>
+    <article class="main-card main-card-center card-ornament" [style.background-image]="'url(' + centerMainImage + ')'" aria-label="Carta destacada central"></article>
+    <article class="main-card main-card-right card-ornament" [style.background-image]="'url(' + rightMainImage + ')'" aria-label="Carta destacada derecha"></article>
+  </div>
+
+  <div class="cta-wrap">
+    <button type="button" class="cta-button" aria-label="Entrar a la coleccion">
+      Entrar a la colección
+    </button>
+    <div class="meta-row" aria-hidden="true">
+      <span class="meta-pill">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M4 4h16v16H4zM8 8h8v8H8z" />
+        </svg>
+        1200+ cartas
+      </span>
+      <span class="meta-pill">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M12 2 2 7l10 5 10-5-10-5Zm0 9L2 6v11l10 5 10-5V6l-10 5Z" />
+        </svg>
+        Ediciones especiales
+      </span>
+    </div>
+  </div>
+</section>
