@@ -1,0 +1,42 @@
+<section class="game-shell" aria-label="Zona principal del juego">
+  <header class="game-header">
+    <h1 class="brand">Kardoria Arena</h1>
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="user-chip"
+        aria-label="Menu de usuario"
+        aria-haspopup="menu"
+        [attr.aria-expanded]="userMenuOpen()"
+        (click)="toggleUserMenu($event)"
+      >
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="user-name">{{ displayName() }}</span>
+        <span class="menu-caret" aria-hidden="true">▾</span>
+      </button>
+
+      @if (userMenuOpen()) {
+        <div class="user-dropdown" role="menu" aria-label="Opciones de usuario">
+          <button type="button" class="dropdown-item" role="menuitem" (click)="openMyAccount()">
+            My account
+          </button>
+          <button type="button" class="dropdown-item danger" role="menuitem" (click)="logout()">
+            Cerrar sesion
+          </button>
+        </div>
+      }
+    </div>
+  </header>
+
+  <main class="game-main" aria-label="Contenido principal del juego">
+    <p class="game-title">Panel principal</p>
+    <p class="game-description">
+      Esta es la pantalla base del juego. Desde aqui puedes agregar modulos como combate, mazos y ranking.
+    </p>
+  </main>
+
+  <footer class="game-footer">
+    <small>Kardoria © 2026</small>
+  </footer>
+</section>

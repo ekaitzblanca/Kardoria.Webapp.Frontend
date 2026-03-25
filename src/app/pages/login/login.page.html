@@ -17,10 +17,10 @@
     <p class="subtitle">Accede a tu colección y continúa donde lo dejaste.</p>
 
     <form [formGroup]="loginForm" (ngSubmit)="submit()" class="form" novalidate>
-      <label class="field-label" for="email">Correo electrónico</label>
-      <input id="email" type="email" formControlName="email" class="field" autocomplete="email" />
-      @if (showErrors() && loginForm.controls.email.invalid) {
-        <p class="error">Introduce un correo válido.</p>
+      <label class="field-label" for="username">Usuario</label>
+      <input id="username" type="text" formControlName="username" class="field" autocomplete="username" />
+      @if (showErrors() && loginForm.controls.username.invalid) {
+        <p class="error">Introduce un nombre de usuario valido.</p>
       }
 
       <label class="field-label" for="password">Contraseña</label>
@@ -35,12 +35,18 @@
         <p class="error">La contraseña debe tener al menos 6 caracteres.</p>
       }
 
+      @if (authError()) {
+        <p class="error">{{ authError() }}</p>
+      }
+
       <label class="remember-row">
         <input type="checkbox" formControlName="remember" />
         Recordarme
       </label>
 
-      <button type="submit" class="submit-btn">Iniciar sesión</button>
+      <button type="submit" class="submit-btn" [disabled]="isSubmitting()">
+        {{ isSubmitting() ? 'Iniciando sesion...' : 'Iniciar sesion' }}
+      </button>
       <a routerLink="/register" class="create-account-btn">Crear cuenta</a>
     </form>
 

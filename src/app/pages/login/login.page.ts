@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { finalize } from 'rxjs';
+
+import { LoginRequest } from '../../interfaces/auth.interface';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,14 +16,18 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginPage {
   private readonly fb = inject(FormBuilder);
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
   private readonly availableCardImages = ['/Bakugo.png', '/Hinata.png', '/Levi.png', '/Momo.png'];
   private readonly backgroundCardCount = 10;
 
   protected readonly submitAttempted = signal(false);
+  protected readonly isSubmitting = signal(false);
+  protected readonly authError = signal<string | null>(null);
   protected readonly backgroundCardImages = this.createBackgroundImages();
 
   protected readonly loginForm = this.fb.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required, Validators.minLength(3)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     remember: [true],
   });
@@ -27,14 +36,41 @@ export class LoginPage {
 
   protected submit(): void {
     this.submitAttempted.set(true);
+    this.authError.set(null);
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
 
-    // Placeholder while backend auth is not connected yet.
-    console.log('Login payload', this.loginForm.getRawValue());
+    const payload: LoginRequest = {
+      username: this.loginForm.controls.username.getRawValue(),
+      password: this.loginForm.controls.password.getRawValue(),
+    };
+
+    this.isSubmitting.set(true);
+
+    this.authService
+      .login(payload)
+      .pipe(finalize(() => this.isSubmitting.set(false)))
+      .subscribe({
+        next: (response) => {
+          const storage = this.loginForm.controls.remember.getRawValue() ? localStorage : sessionStorage;
+          const secondaryStorage = storage === localStorage ? sessionStorage : localStorage;
+
+          secondaryStorage.removeItem('kardoria_user');
+          storage.setItem('kardoria_user', JSON.stringify(response.user));
+          void this.router.navigateByUrl('/game');
+        },
+        error: (error: HttpErrorResponse) => {
+          const message =
+            typeof error.error?.detail === 'string'
+              ? error.error.detail
+              : 'No se pudo iniciar sesion. Intentalo de nuevo.';
+
+          this.authError.set(message);
+        },
+      });
   }
 
   private createBackgroundImages(): string[] {

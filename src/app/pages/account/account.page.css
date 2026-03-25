@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.account-shell {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 80% 10%, rgb(74 144 226 / 18%) 0%, transparent 32%),
+    linear-gradient(180deg, #0c1224 0%, #080d1a 100%);
+  color: #e6efff;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+}
+
+.card {
+  width: min(100%, 34rem);
+  border: 1px solid rgb(121 214 255 / 32%);
+  border-radius: 0.8rem;
+  background: rgb(14 28 56 / 78%);
+  padding: 1rem;
+}
+
+.card p {
+  margin: 0.55rem 0;
+}
