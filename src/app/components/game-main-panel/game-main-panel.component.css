@@ -1,0 +1,19 @@
+:host {
+  display: grid;
+  place-content: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.game-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+}
+
+.game-description {
+  margin: 0;
+  max-width: 56rem;
+  color: #c7d7f8;
+  line-height: 1.5;
+}

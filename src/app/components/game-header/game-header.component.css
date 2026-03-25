@@ -1,0 +1,149 @@
+:host {
+  display: block;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 3vw, 2.2rem);
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
+  backdrop-filter: blur(2px);
+}
+
+.brand {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgb(121 214 255 / 40%);
+  background: rgb(14 28 56 / 85%);
+  color: #e6efff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-chip:focus-visible {
+  outline: 2px solid #79d6ff;
+  outline-offset: 2px;
+}
+
+.status-dot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: #56f3aa;
+  box-shadow: 0 0 0.6rem rgb(86 243 170 / 80%);
+}
+
+.menu-caret {
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.coin-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  border: 1px solid rgb(255 214 117 / 45%);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  min-width: 8.6rem;
+  background: rgb(49 35 9 / 65%);
+  cursor: default;
+}
+
+.coin-icon {
+  margin-left: auto;
+  color: #ffcd55;
+  font-size: 0.54rem;
+  text-shadow: 0 0 0.4rem rgb(255 205 85 / 70%);
+}
+
+.coin-value {
+  color: #ffe6a6;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  min-width: 10.5rem;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  border: 1px solid rgb(121 214 255 / 28%);
+  border-radius: 0.7rem;
+  background: rgb(9 18 38 / 96%);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 36%);
+  z-index: 5;
+}
+
+.dropdown-item {
+  border: 1px solid transparent;
+  background: transparent;
+  color: #e6efff;
+  border-radius: 0.5rem;
+  text-align: left;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.dropdown-item:hover {
+  background: rgb(31 49 88 / 90%);
+  border-color: rgb(121 214 255 / 48%);
+}
+
+.dropdown-item:focus-visible {
+  outline: 2px solid #79d6ff;
+  outline-offset: 2px;
+}
+
+.dropdown-item.danger {
+  color: #ffd0d0;
+}
+
+@media (width <= 640px) {
+  .game-header {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .user-dropdown {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

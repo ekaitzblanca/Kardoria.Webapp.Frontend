@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.game-footer {
+  display: flex;
+  justify-content: center;
+  padding: 0.9rem;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  color: #99acd8;
+  font-size: 0.82rem;
+}

@@ -71,7 +71,7 @@ export class LoginPage {
 
           secondaryStorage.removeItem('kardoria_user');
           storage.setItem('kardoria_user', JSON.stringify(response.user));
-          void this.router.navigateByUrl('/game');
+          void this.router.navigateByUrl('/game/profile');
         },
         error: (error: HttpErrorResponse) => {
           const message =
