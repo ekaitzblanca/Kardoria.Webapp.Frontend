@@ -17,7 +17,6 @@ import { filter } from 'rxjs/operators';
 import {
   AmbientLight,
   BoxGeometry,
-  Clock,
   Color,
   Group,
   Mesh,
@@ -43,7 +42,6 @@ interface SceneBundle {
   scene: Scene;
   camera: PerspectiveCamera | OrthographicCamera;
   root: Group;
-  clock: Clock;
 }
 
 @Component({
@@ -191,7 +189,6 @@ export class GameMenuComponent implements AfterViewInit, OnDestroy {
   private createSceneForOption(option: GameMenuOption, canvas: HTMLCanvasElement, renderer: WebGLRenderer): SceneBundle {
     const scene = new Scene();
     const root = new Group();
-    const clock = new Clock();
 
     scene.add(new AmbientLight(new Color('#b7deff'), 1.1));
     scene.add(root);
@@ -283,7 +280,7 @@ export class GameMenuComponent implements AfterViewInit, OnDestroy {
       camera.position.y = 0.08;
     }
 
-    return { canvas, renderer, scene, camera, root, clock };
+    return { canvas, renderer, scene, camera, root };
   }
 
   private createCardMesh(x: number, y: number, rotateY: number): Mesh {
