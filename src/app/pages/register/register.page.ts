@@ -22,7 +22,18 @@ function matchingPasswords(control: AbstractControl): { passwordMismatch: true }
 })
 export class RegisterPage {
   private readonly fb = inject(FormBuilder);
-  private readonly availableCardImages = ['/Bakugo.png', '/Hinata.png', '/Levi.png', '/Momo.png'];
+  private readonly availableCardImages = [
+    '/cards/001.png',
+    '/cards/002.png',
+    '/cards/003.png',
+    '/cards/004.png',
+    '/cards/005.png',
+    '/cards/006.png',
+    '/cards/007.png',
+    '/cards/008.png',
+    '/cards/009.png',
+    '/cards/010.png',
+  ];
   private readonly backgroundCardCount = 10;
 
   protected readonly submitAttempted = signal(false);
@@ -53,14 +64,32 @@ export class RegisterPage {
   }
 
   private createBackgroundImages(): string[] {
-    const source = this.availableCardImages.length > 0 ? this.availableCardImages : ['/Hinata.png'];
+    const source = this.availableCardImages.length > 0 ? this.availableCardImages : ['/cards/001.png'];
     const images: string[] = [];
+    let pool = this.shuffleImages(source);
 
     for (let index = 0; index < this.backgroundCardCount; index += 1) {
-      const image = source[Math.floor(Math.random() * source.length)];
-      images.push(image);
+      if (pool.length === 0) {
+        pool = this.shuffleImages(source);
+      }
+
+      const image = pool.pop();
+      if (image) {
+        images.push(image);
+      }
     }
 
     return images;
+  }
+
+  private shuffleImages(images: string[]): string[] {
+    const shuffled = [...images];
+
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+      const swapIndex = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+    }
+
+    return shuffled;
   }
 }
